@@ -26,4 +26,7 @@ install:
   - php composer.phar install --dev --no-interaction --ignore-platform-reqs
 
 script:
-  - bin/phpunit
+  - bin/phpunit --coverage-clover build/logs/clover.xml
+
+after_success:
+  - travis_retry php bin/coveralls

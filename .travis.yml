@@ -19,11 +19,11 @@ matrix:
         - _PHP: php71
 
 before_install:
-  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then /usr/bin/env bash tools/prepare_osx_env.sh ; fi
-  - if [[ $PHPUNIT_FLAGS = "" ]]; then phpenv config-rm xdebug.ini; fi
+  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then /usr/bin/env bash bin/prepare_osx_env.sh ; fi
+  - if [[ $PHPUNIT_FLAGS = "" ] AND [ $TRAVIS_OS_NAME != "osx" ]]; then phpenv config-rm xdebug.ini; fi
 
 install:
-  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then /usr/bin/env bash tools/handle_brew_pkg.sh "${_PHP}" ; fi
+  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then /usr/bin/env bash bin/handle_brew_pkg.sh "${_PHP}" ; fi
   - curl -s http://getcomposer.org/installer | php
   - php composer.phar install --dev --no-interaction --ignore-platform-reqs
 

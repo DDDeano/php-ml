@@ -9,27 +9,24 @@ use Phpml\Exception\InvalidArgumentException;
 class StandardDeviation
 {
     /**
-     * @param array|float[] $a
-     *
-     * @throws InvalidArgumentException
+     * @param array|float[]|int[] $numbers
      */
-    public static function population(array $a, bool $sample = true): float
+    public static function population(array $numbers, bool $sample = true): float
     {
-        if (empty($a)) {
+        if (empty($numbers)) {
             throw InvalidArgumentException::arrayCantBeEmpty();
         }
 
-        $n = count($a);
+        $n = count($numbers);
 
         if ($sample && $n === 1) {
             throw InvalidArgumentException::arraySizeToSmall(2);
         }
 
-        $mean = Mean::arithmetic($a);
+        $mean = Mean::arithmetic($numbers);
         $carry = 0.0;
-        foreach ($a as $val) {
-            $d = $val - $mean;
-            $carry += $d * $d;
+        foreach ($numbers as $val) {
+            $carry += ($val - $mean) ** 2;
         }
 
         if ($sample) {
@@ -39,7 +36,13 @@ class StandardDeviation
         return sqrt((float) ($carry / $n));
     }
 
-    public static function sumOfSquares(array $numbers) : float
+    /**
+     * Sum of squares deviations
+     * ∑⟮xᵢ - μ⟯²
+     *
+     * @param array|float[]|int[] $numbers
+     */
+    public static function sumOfSquares(array $numbers): float
     {
         if (empty($numbers)) {
             throw InvalidArgumentException::arrayCantBeEmpty();
@@ -49,7 +52,7 @@ class StandardDeviation
 
         return array_sum(array_map(
             function ($val) use ($mean) {
-                return ($val -$mean) ** 2;
+                return ($val - $mean) ** 2;
             },
             $numbers
         ));

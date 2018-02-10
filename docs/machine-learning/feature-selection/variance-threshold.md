@@ -9,6 +9,8 @@ By default, it removes all zero-variance features, i.e. features that have the s
 * $threshold (float) - features with a variance lower than this threshold will be removed (default 0.0)
 
 ```php
+use Phpml\FeatureSelection\VarianceThreshold;
+
 $transformer = new VarianceThreshold(0.15);
 ```
 
@@ -25,6 +27,8 @@ Var[X] = p(1 - p)
 so we can select using the threshold .8 * (1 - .8):
 
 ```php
+use Phpml\FeatureSelection\VarianceThreshold;
+
 $samples = [[0, 0, 1], [0, 1, 0], [1, 0, 0], [0, 1, 1], [0, 1, 0], [0, 1, 1]];
 $transformer = new VarianceThreshold(0.8 * (1 - 0.8));
 
@@ -38,8 +42,19 @@ $samples = [[0, 1], [1, 0], [0, 0], [1, 1], [1, 0], [1, 1]];
 
 ## Pipeline
 
-`VarianceThreshold` implements `Transformer` interface so can be used as part of pipeline:
+`VarianceThreshold` implements `Transformer` interface so it can be used as part of pipeline:
 
 ```php
+use Phpml\FeatureSelection\VarianceThreshold;
+use Phpml\Classification\SVC;
+use Phpml\FeatureExtraction\TfIdfTransformer;
+use Phpml\Pipeline;
 
+$transformers = [
+    new TfIdfTransformer(),
+    new VarianceThreshold(0.1)
+];
+$estimator = new SVC();
+
+$pipeline = new Pipeline($transformers, $estimator);
 ```

@@ -38,4 +38,20 @@ class StandardDeviation
 
         return sqrt((float) ($carry / $n));
     }
+
+    public static function sumOfSquares(array $numbers) : float
+    {
+        if (empty($numbers)) {
+            throw InvalidArgumentException::arrayCantBeEmpty();
+        }
+
+        $mean = Mean::arithmetic($numbers);
+
+        return array_sum(array_map(
+            function ($val) use ($mean) {
+                return ($val -$mean) ** 2;
+            },
+            $numbers
+        ));
+    }
 }

@@ -1,9 +1,10 @@
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+
 parameters:
     ignoreErrors:
         - '#Phpml\\Dataset\\FilesDataset::__construct\(\) does not call parent constructor from Phpml\\Dataset\\ArrayDataset#'
-
-        # mocks
-        - '#PHPUnit_Framework_MockObject_MockObject#'
 
         # wide range cases
         - '#Call to function count\(\) with argument type array<int>\|Phpml\\Clustering\\KMeans\\Point will always result in number 1#'

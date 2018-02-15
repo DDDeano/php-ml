@@ -13,6 +13,5 @@ parameters:
         - '#Parameter \#1 \$coordinates of class Phpml\\Clustering\\KMeans\\Point constructor expects array, array<int>\|Phpml\\Clustering\\KMeans\\Point given#'
 
         # probably known value
-        - '#Variable \$j might not be defined#'
         - '#Method Phpml\\Classification\\DecisionTree::getBestSplit\(\) should return Phpml\\Classification\\DecisionTree\\DecisionTreeLeaf but returns Phpml\\Classification\\DecisionTree\\DecisionTreeLeaf\|null#'
         - '#Call to an undefined method Phpml\\Helper\\Optimizer\\Optimizer::getCostValues\(\)#'

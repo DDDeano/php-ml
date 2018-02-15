@@ -312,13 +312,13 @@ class DecisionTree implements Classifier
                 $split->value = $baseValue;
                 $split->giniIndex = $gini;
                 $split->columnIndex = $i;
-                $split->isContinuous = $this->columnTypes[$i] == self::CONTINUOUS;
+                $split->isContinuous = $this->columnTypes[$i] === self::CONTINUOUS;
                 $split->records = $records;
 
                 // If a numeric column is to be selected, then
                 // the original numeric value and the selected operator
                 // will also be saved into the leaf for future access
-                if ($this->columnTypes[$i] == self::CONTINUOUS) {
+                if ($this->columnTypes[$i] === self::CONTINUOUS) {
                     $matches = [];
                     preg_match("/^([<>=]{1,2})\s*(.*)/", (string) $split->value, $matches);
                     $split->operator = $matches[1];
@@ -363,7 +363,7 @@ class DecisionTree implements Classifier
         }
 
         shuffle($allFeatures);
-        $selectedFeatures = array_slice($allFeatures, 0, $numFeatures, false);
+        $selectedFeatures = array_slice($allFeatures, 0, $numFeatures);
         sort($selectedFeatures);
 
         return $selectedFeatures;

@@ -56,6 +56,7 @@ class ArrayDataset implements Dataset
         foreach ($columns as $index) {
             unset($sample[$index]);
         }
+
         $sample = array_values($sample);
     }
 }

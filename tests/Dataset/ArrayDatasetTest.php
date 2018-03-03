@@ -30,11 +30,11 @@ class ArrayDatasetTest extends TestCase
     public function testRemoveColumns(): void
     {
         $dataset = new ArrayDataset(
-            [[1,2,3,4], [2,3,4,5], [3,4,5,6], [4,5,6,7]],
+            [[1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6], [4, 5, 6, 7]],
             ['a', 'a', 'b', 'b']
         );
-        $dataset->removeColumns([0,2]);
+        $dataset->removeColumns([0, 2]);
 
-        $this->assertEquals([[2,4], [3,5], [4,6], [5,7]], $dataset->getSamples());
+        $this->assertEquals([[2, 4], [3, 5], [4, 6], [5, 7]], $dataset->getSamples());
     }
 }

@@ -18,7 +18,7 @@ vendor/bin/phpunit
 
 ## Performance Tests
 
-Before first run boostrap script will download all nessesary datasets from public repository `php-ai/php-ml-datasets`.
+Before first run bootstrap script will download all necessary datasets from public repository `php-ai/php-ml-datasets`.
 
 Time performance tests:
 

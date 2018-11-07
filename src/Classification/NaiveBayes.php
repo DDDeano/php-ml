@@ -139,7 +139,7 @@ class NaiveBayes implements Classifier
     private function sampleProbability(array $sample, int $feature, string $label): float
     {
         if (!isset($sample[$feature])) {
-            throw new InvalidArgumentException('Missing feature. All samples must have equals numbers of features');
+            throw new InvalidArgumentException('Missing feature. All samples must have equal number of features');
         }
 
         $value = $sample[$feature];

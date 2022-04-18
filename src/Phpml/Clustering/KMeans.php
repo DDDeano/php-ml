@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Phpml\Clustering;
 
@@ -45,7 +45,7 @@ class KMeans implements Clusterer
      */
     public function cluster(array $samples)
     {
-        $space = new Space(count($samples[0]));
+        $space = new Space(count($samples[array_key_first($samples)]));
         foreach ($samples as $sample) {
             $space->addPoint($sample);
         }
